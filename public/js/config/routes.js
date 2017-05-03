@@ -24,9 +24,6 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
       })
 
 
-
-
-
       .state('algo1', {
         url:'/algo1',
         template:'{{a}}',
@@ -44,6 +41,21 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
 
         }]
       })
+
+      .state('algo2', {
+        url:'/algo2',
+        template:'{{b}}',
+        controller: ['$scope', function($scope){
+          function foldTo(distance) {
+            if (distance>=0){
+              let result = Math.log2(distance/0.0001)
+              return Math.ceil(result)
+            }}
+
+            $scope.b=foldTo(14928418679754190000)
+          }]
+        })
+
       .state('callback', {
         url: '/auth/callback/:token',
         template: '',
