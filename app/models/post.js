@@ -9,6 +9,11 @@ module.exports = mongoose.model('Post', new mongoose.Schema({
 	title: {
 		type: String
 	},
+
+	visible: {
+		type: Boolean,
+		default: true
+	},
 	date: {
 		type: Date
 	},
