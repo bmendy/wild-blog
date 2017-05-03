@@ -2,7 +2,7 @@
 Create Angular config in app.config module
 */
 export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($stateProvider, $urlRouterProvider, $locationProvider) => {
-    'use strict'
+  'use strict'
     // Define prefix
     $locationProvider.hashPrefix('!');
     // For each url not found redirection to '/'
@@ -15,37 +15,48 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
         url: '',
         abstract: true,
         template: '<navbar /><div class="container"><ui-view></ui-view></div>'
-    })
+      })
+
+
+      .state('admin', {
+        url:'/admin',
+        template: '<admin /><div class="container"><ui-view></ui-view></div>'
+      })
+
+
+
+
+
       .state('algo1', {
         url:'/algo1',
         template:'{{a}}',
         controller: ['$scope', function($scope){ 
-            function friend(friends){
-                let myfriends= [];
-                friends.forEach(function(element){
-                    if (element.length===4){
-                      myfriends.push(element)
-                  }
-              })
-                return myfriends
-            }
-            $scope.a=friend(["Ryan", "Kieran", "Mark"])
+          function friend(friends){
+            let myfriends= [];
+            friends.forEach(function(element){
+              if (element.length===4){
+                myfriends.push(element)
+              }
+            })
+            return myfriends
+          }
+          $scope.a=friend(["Ryan", "Kieran", "Mark"])
 
         }]
-    })
+      })
       .state('callback', {
         url: '/auth/callback/:token',
         template: '',
         controller: ['UsersService', '$stateParams', '$state', function(UsersService, $stateParams, $state) {
-            if ($stateParams.token) {
-                UsersService.setToken($stateParams.token).then((user) => {
-                    let toastContent = `Welcome ${user.name} !`
-                    Materialize.toast(toastContent, 4000, 'toast-success')
-                    $state.go('blog.list')
-                })
-            } else {
-                $state.go('blog.list')
-            }
+          if ($stateParams.token) {
+            UsersService.setToken($stateParams.token).then((user) => {
+              let toastContent = `Welcome ${user.name} !`
+              Materialize.toast(toastContent, 4000, 'toast-success')
+              $state.go('blog.list')
+            })
+          } else {
+            $state.go('blog.list')
+          }
         }]
-    })
-  }]
+      })
+    }]
