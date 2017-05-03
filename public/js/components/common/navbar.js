@@ -21,9 +21,10 @@ let navbar = {
             }
 
         })
-
         
-        this.today = moment().format('MMMM Do YYYY, h:mm:ss a');
+        
+        this.today=moment().format('MMMM Do YYYY, h:mm:ss a');
+        
     }]
 }
 
