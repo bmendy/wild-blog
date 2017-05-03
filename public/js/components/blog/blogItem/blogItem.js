@@ -35,6 +35,7 @@ let blogItem = {
                 PostsService.getById($stateParams.id).then((res) => {
                     // when this request receives response we affect response data to this controller variable post
                     this.post = res.data;
+                    console.log(this.post)
                     // save into initialPost a copy of this post (used for undo)
                     initialPost = angular.copy(this.post)
                 })
@@ -57,6 +58,7 @@ let blogItem = {
         // Create save function.
         // If you want to use in view you can call with $ctrl.save()
         this.save = () => {
+            console.log(this.post)
             // Call save method form PostsService with post
             PostsService.save(this.post).then((res) => {
                 // Change editMode value to false
@@ -82,7 +84,7 @@ let blogItem = {
 
         this.isFav = () => {
             if (!this.post) return
-            return (this.user.bookmarks.find((post_id) => post_id.id === this.post._id))
+                return (this.user.bookmarks.find((post_id) => post_id.id === this.post._id))
         }
 
         this.addOrRemoveToBookmark = () => {
